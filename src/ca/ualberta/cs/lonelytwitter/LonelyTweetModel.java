@@ -2,7 +2,7 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
-public abstract class LonelyTweetModel {
+public class LonelyTweetModel {
 	private String text;
 	private Date timestamp;
 	public String getText() {
@@ -25,9 +25,23 @@ public abstract class LonelyTweetModel {
 		this.text = text;
 	}
 	
-	public abstract Date getTimestamp();
+	public Date getTimestamp() {
+		return timestamp;
+	}
 	
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+	@Override
+	public String toString() {
+		return new String(timestamp.toString() + " | " + text);
+	}
+
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof LonelyTweetModel)) {
+			return false;
+		}
+		LonelyTweetModel otherTweet = (LonelyTweetModel) other;
+		return text.equals(otherTweet.text);
 	}
 }
